@@ -1,6 +1,12 @@
-SquareFutureExample.java
- SquareFutureExample
 SquareCallableExample.java
  SquareCallableExample
+SquareFutureExample.java
+ SquareFutureExample
 MainFutureExample.java
  MainFutureExample
+MainCompletableFutureExample.java
+ MainCompletableFutureExample
+AutomaticCashierCallable.java
+ AutomaticCashierCallable
+MainAutomaticCashier.java
+ MainAutomaticCashier
