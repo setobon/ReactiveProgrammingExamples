@@ -9,7 +9,7 @@ public class AutomaticCashierCallable{
         String message;
 
         if(amount<=0){
-            message = "invalid amount";
+            message = "error";
         }else {
             message = "Success transaction => Withdrawal per $" + amount;
         }

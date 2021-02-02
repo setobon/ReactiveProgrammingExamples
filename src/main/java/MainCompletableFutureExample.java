@@ -1,6 +1,4 @@
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Future;
+import java.util.concurrent.*;
 
 public class MainCompletableFutureExample {
 
@@ -9,20 +7,104 @@ public class MainCompletableFutureExample {
         //supplyAsyncCompletableFutureExample();
         //thenApplyCompletableFutureExample();
         //thenAcceptCompletableFutureExample();
-        thenRunCompletableFutureExample();
+        //thenRunCompletableFutureExample();
+        //thenComposeCompletableFutureExample();
+        //thenCombineCompletableFutureExample();
+        //executorServiceCompletableFutureExample();
+        //handleCompletableFuture();
+        exceptionallyCompletableFuture();
     }
 
-    private static void thenRunCompletableFutureExample() throws InterruptedException, ExecutionException {
 
-        /**
-         * thenRun -> es de tipo consumer y not tiene  parametro y tampoco devuelve nada
-         */
+    /**
+     * handle, exceptionally.
+     * */
+
+
+    public static void exceptionallyCompletableFuture() throws ExecutionException, InterruptedException {
+        String name = "Sergio";
+
+        CompletableFuture<String> completableFuture = CompletableFuture.supplyAsync(()->{
+            if(name==null){
+                throw new RuntimeException("Error...");
+            }
+            return "Hi ".concat(name);
+        });
+
+        completableFuture.completeExceptionally(new RuntimeException("There is an error"));
+
+        System.out.println(completableFuture.get());
+    }
+
+    public static void handleCompletableFuture() throws ExecutionException, InterruptedException {
+        String name = "Sergio";
+
+        CompletableFuture<String> completableFuture = CompletableFuture.supplyAsync(()->{
+            if(name==null){
+                throw new RuntimeException("Error...");
+            }
+            return "Hi ".concat(name);
+        }).handle((success,error) -> success != null?success:"There is an error");
+
+        System.out.println(completableFuture.get());
+    }
+
+    private static void executorServiceCompletableFutureExample() throws InterruptedException, ExecutionException {
+        ExecutorService executor = Executors.newFixedThreadPool(2);
 
         CompletableFuture<Integer> completableFuture =
                 CompletableFuture.supplyAsync(()->3*3);
 
-        completableFuture.thenRun(()->System.out.println("Esto no hace nada"));
+        CompletableFuture<Integer> future = completableFuture.thenApplyAsync((nine)->nine/3);
 
+        System.out.println(future.get());
+
+        executor.shutdown();
+    }
+
+    private static void thenCombineCompletableFutureExample() throws InterruptedException, ExecutionException {
+
+        /**
+         * thenCompose -> permite encadenar varios métodos. Utiliza lo que justo pasó anteriormente,
+         * como argumento, devuelve un future con el resultado directamente.
+         */
+
+        CompletableFuture<String> completableFuture = new CompletableFuture<>();
+
+        CompletableFuture<CompletableFuture<String>> completableText =
+                completableFuture.thenApply((word)->firstName(word));
+
+        CompletableFuture<String> completableFutureCompose = completableFuture
+                .thenCompose((word) -> firstName(word));
+
+        System.out.println(completableFutureCompose.get());
+
+    }
+
+    private static void thenComposeCompletableFutureExample() throws InterruptedException, ExecutionException {
+
+        /**
+         * thenCompose -> permite encadenar varios métodos. Utiliza lo que justo pasó anteriormente,
+         * como argumento, devuelve un future con el resultado directamente.
+         */
+
+        CompletableFuture<String> completableFuture =
+                CompletableFuture.supplyAsync(()->"Hola ");
+
+        CompletableFuture<String> greetingFuture = completableFuture
+                .thenCompose((word) -> firstName(word))
+                .thenCompose((word)->lastName(word));
+
+        System.out.println(greetingFuture.get());
+
+    }
+
+    public static CompletableFuture<String> firstName(String word){
+        return CompletableFuture.supplyAsync(()->word.concat("Sergio"));
+    }
+
+    public static CompletableFuture<String> lastName(String word){
+        return CompletableFuture.supplyAsync(()->word.concat(" Tobón"));
     }
 
     private static void thenAcceptCompletableFutureExample() throws InterruptedException, ExecutionException {

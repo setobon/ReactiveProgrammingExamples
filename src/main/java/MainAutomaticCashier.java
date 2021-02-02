@@ -9,7 +9,16 @@ public class MainAutomaticCashier {
         AutomaticCashierCallable automaticCashierCallable = new AutomaticCashierCallable();
 
         Future<String> completableFuture =
-                CompletableFuture.completedFuture(automaticCashierCallable.withdrawal(100));
+                CompletableFuture.supplyAsync(()->{
+                    String message = automaticCashierCallable.withdrawal(0);
+                    if(message.equals("error")){
+                        throw new RuntimeException(message.concat(" invalid amount"));
+                    }
+                    return message;
+                }).exceptionally(ex -> {
+                    System.out.println("failed: " + ex);
+                    return "failed";
+                });
 
         String result = completableFuture.get();
 
