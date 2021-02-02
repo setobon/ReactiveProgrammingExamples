@@ -25,8 +25,8 @@ public class MainFutureExample {
 
     private static void FutureExampleMethod() throws InterruptedException, ExecutionException, TimeoutException {
         SquareFutureExample squareFutureExample = new SquareFutureExample();
-        Future<Integer> future = squareFutureExample.calculate(12);
-        Future<Integer> future1 = squareFutureExample.calculate(100);
+        Future<Integer> future = squareFutureExample.calculateAsync(12);
+        Future<Integer> future1 = squareFutureExample.calculateAsync(100);
 
         while (!(future.isDone() && future1.isDone())) {
 
