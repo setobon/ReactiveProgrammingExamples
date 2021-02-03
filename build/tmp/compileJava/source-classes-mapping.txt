@@ -1,12 +1,28 @@
 SquareCallableExample.java
  SquareCallableExample
+MainAutomaticCashier.java
+ MainAutomaticCashier
 SquareFutureExample.java
  SquareFutureExample
 MainFutureExample.java
  MainFutureExample
-MainCompletableFutureExample.java
- MainCompletableFutureExample
+Person.java
+ Person
 AutomaticCashierCallable.java
  AutomaticCashierCallable
-MainAutomaticCashier.java
- MainAutomaticCashier
+Travels.java
+ Travels
+MainCompletableFutureExample.java
+ MainCompletableFutureExample
+PersonShop.java
+ PersonShop
+StreamExamples.java
+ StreamExamples
+MainTravels.java
+ MainTravels
+MainStream.java
+ MainStream
+Product.java
+ Product
+MainCarShop.java
+ MainCarShop
