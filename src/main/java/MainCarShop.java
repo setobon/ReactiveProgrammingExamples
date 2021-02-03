@@ -29,7 +29,6 @@ public class MainCarShop {
                 .map(PersonShop::getProducts)
                 .flatMap(Collection::stream)
                 .filter(person -> person.getPrice() > 500)
-                .collect(Collectors.toList())
                 .forEach(products -> System.out.println(products.getName() + ": " + products.getPrice()));
     }
 }
