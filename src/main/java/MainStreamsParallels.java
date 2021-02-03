@@ -28,7 +28,7 @@ public class MainStreamsParallels {
         timeBefore = System.currentTimeMillis();
         System.out.println("Parallel stream count: " +
                 //employees.parallelStream().filter(employee -> employee.getSalary() > 200).count());
-                employees.parallelStream().filter(employee -> employee.getSalary() > 200).parallel().count());
+                employees.stream().filter(employee -> employee.getSalary() > 200).parallel().count());
 
         timeAfter = System.currentTimeMillis();
         System.out.println("Parallel time taken: " + (timeAfter-timeBefore));

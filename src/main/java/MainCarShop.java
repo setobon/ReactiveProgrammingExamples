@@ -25,10 +25,27 @@ public class MainCarShop {
         people.add(personOne);
         people.add(personTwo);
 
+
+        long timeBefore = System.currentTimeMillis();
         people.stream()
                 .map(PersonShop::getProducts)
                 .flatMap(Collection::stream)
                 .filter(person -> person.getPrice() > 500)
+               // .parallel()
                 .forEach(products -> System.out.println(products.getName() + ": " + products.getPrice()));
+
+        long timeAfter = System.currentTimeMillis();
+        System.out.println("\nwithout Parallel time taken: " + (timeAfter-timeBefore) + "\n");
+
+        timeBefore = System.currentTimeMillis();
+        people.stream()
+                .map(PersonShop::getProducts)
+                .flatMap(Collection::stream)
+                .filter(person -> person.getPrice() > 500)
+                // .parallel()
+                .forEach(products -> System.out.println(products.getName() + ": " + products.getPrice()));
+
+        timeAfter = System.currentTimeMillis();
+        System.out.println("\nParallel time taken: " + (timeAfter-timeBefore));
     }
 }

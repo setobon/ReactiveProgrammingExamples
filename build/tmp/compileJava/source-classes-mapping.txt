@@ -20,13 +20,13 @@ StreamExamples.java
  StreamExamples
 PersonShop.java
  PersonShop
-MainCarShop.java
- MainCarShop
+Employee.java
+ Employee
 MainTravels.java
  MainTravels
 Person.java
  Person
-Employee.java
- Employee
 MainStreamsParallels.java
  MainStreamsParallels
+MainCarShop.java
+ MainCarShop
