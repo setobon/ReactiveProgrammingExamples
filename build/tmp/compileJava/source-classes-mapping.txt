@@ -1,32 +1,54 @@
 SquareCallableExample.java
  SquareCallableExample
-MainAutomaticCashier.java
- MainAutomaticCashier
-SquareFutureExample.java
- SquareFutureExample
-MainFutureExample.java
- MainFutureExample
-MainStream.java
- MainStream
-AutomaticCashierCallable.java
- AutomaticCashierCallable
-Travels.java
- Travels
-MainCompletableFutureExample.java
- MainCompletableFutureExample
-Product.java
- Product
-StreamExamples.java
- StreamExamples
-PersonShop.java
- PersonShop
 Employee.java
  Employee
-MainTravels.java
- MainTravels
-Person.java
- Person
+SquareFutureExample.java
+ SquareFutureExample
 MainStreamsParallels.java
  MainStreamsParallels
+com/observer/pattern/exercise/Account.java
+ com.observer.pattern.exercise.Account
+StreamExamples.java
+ StreamExamples
+Travels.java
+ Travels
+Person.java
+ Person
+MainCompletableFutureExample.java
+ MainCompletableFutureExample
+PersonShop.java
+ PersonShop
+MainAutomaticCashier.java
+ MainAutomaticCashier
 MainCarShop.java
  MainCarShop
+MainFutureExample.java
+ MainFutureExample
+MainTravels.java
+ MainTravels
+MainStream.java
+ MainStream
+Product.java
+ Product
+AutomaticCashierCallable.java
+ AutomaticCashierCallable
+com/observer/pattern/Observer.java
+ com.observer.pattern.Observer
+com/observer/pattern/LengthObserver.java
+ com.observer.pattern.LengthObserver
+com/observer/pattern/exercise/Observer.java
+ com.observer.pattern.exercise.Observer
+com/observer/pattern/MainObserver.java
+ com.observer.pattern.MainObserver
+com/observer/pattern/exercise/Subject.java
+ com.observer.pattern.exercise.Subject
+com/observer/pattern/WordsObserver.java
+ com.observer.pattern.WordsObserver
+com/observer/pattern/CasesObserver.java
+ com.observer.pattern.CasesObserver
+com/observer/pattern/Subject.java
+ com.observer.pattern.Subject
+com/observer/pattern/exercise/MainObserver.java
+ com.observer.pattern.exercise.MainObserver
+com/observer/pattern/exercise/TransferObserver.java
+ com.observer.pattern.exercise.TransferObserver
