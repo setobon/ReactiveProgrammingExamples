@@ -42,7 +42,7 @@ public class MainCarShop {
                 .map(PersonShop::getProducts)
                 .flatMap(Collection::stream)
                 .filter(person -> person.getPrice() > 500)
-                // .parallel()
+                .parallel()
                 .forEach(products -> System.out.println(products.getName() + ": " + products.getPrice()));
 
         timeAfter = System.currentTimeMillis();
