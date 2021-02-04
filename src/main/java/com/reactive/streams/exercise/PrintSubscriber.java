@@ -1,22 +1,22 @@
-package com.reactive.streams;
+package com.reactive.streams.exercise;
+
+import com.reactive.streams.Sleeper;
 
 import java.util.concurrent.Flow;
 
-public class PrintSubscriber implements Flow.Subscriber<Integer>{
+public class PrintSubscriber implements Flow.Subscriber<String>{
 
     private Flow.Subscription subscription;
 
-    //Conexión con el intermediario
     @Override
     public void onSubscribe(Flow.Subscription subscription) {
         this.subscription = subscription;
         subscription.request(1);
     }
 
-    //Se recibe la data que retorna el intermediario, y se ejecuta la tarea (de forma sincrónica).
     @Override
-    public void onNext(Integer item) {
-        System.out.println("Received item" + item);
+    public void onNext(String item) {
+        System.out.println("message received: " + item);
         subscription.request(1);
         Sleeper.sleep(1000);
     }
@@ -28,6 +28,6 @@ public class PrintSubscriber implements Flow.Subscriber<Integer>{
 
     @Override
     public void onComplete() {
-        System.out.println("Print subscriber complete");
+        System.out.println("Process completed");
     }
 }
