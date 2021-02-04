@@ -1,20 +1,24 @@
 package com.observer.pattern.exercise;
 
-public class TransferObserver extends Observer {
+import com.observer.pattern.weather.WeatherObservable;
 
-    public TransferObserver(Subject subject) {
-        this.subject = subject;
-        this.subject.registerObserver(this);
-    }
+import java.util.Observable;
+import java.util.Observer;
+
+public class TransferObserver implements Observer {
+
+    private TransferObservable transferUpdate;
+
 
     @Override
-    public void update() {
+    public void update(Observable o, Object arg) {
         int amount = 23;
         Account accountFrom = new Account("420-502387-01", 100);
         Account accountTo = new Account("420-502387-02", 100);
 
-        System.out.println("User: " + subject.getName());
-        System.out.println(Account.transfer(accountFrom, accountTo, amount));
-        System.out.println("Account updated");
+        transferUpdate = (TransferObservable) o;
+
+        System.out.println("User: " + transferUpdate.getName() + " "
+                + Account.transfer(accountFrom, accountTo, amount));
     }
 }

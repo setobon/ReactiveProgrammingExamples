@@ -1,13 +1,11 @@
 package com.observer.pattern.exercise;
 
-import com.observer.pattern.exercise.Subject;
-
 public class MainObserver {
     public static void main(String[] args) {
-        Subject subject = new Subject("Sergio Tobón");
+        TransferObservable transferObservable = new TransferObservable("Sergio Tobón");
+        TransferObserver transferObserver = new TransferObserver();
 
-        new TransferObserver(subject);
-
-        subject.notifyObservers();
+       transferObservable.addObserver(transferObserver);
+       transferObservable.setName("Sergio Tobon");
     }
 }
