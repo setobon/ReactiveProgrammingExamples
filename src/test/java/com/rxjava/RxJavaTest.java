@@ -261,6 +261,21 @@ public class RxJavaTest{
     }
 
 
+    @Test
+    public void intervalExerciseTest() throws InterruptedException {
+        ConnectableObservable<Long> observable =
+                Observable.interval(1, TimeUnit.SECONDS).publish();
+
+        observable.subscribe(i ->
+                System.out.println("This is the player one and the the time of the game is " + i));
+
+        observable.subscribe(i ->
+                System.out.println("This is the player two and the the time of the game is " + i));
+        observable.connect();
+        Thread.sleep(10000);
+    }
+
+
 
 
 
