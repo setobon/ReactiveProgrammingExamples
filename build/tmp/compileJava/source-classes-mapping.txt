@@ -77,8 +77,8 @@ com/observer/pattern/Subject.java
  com.observer.pattern.Subject
 com/reactive/streams/exercise/Main.java
  com.reactive.streams.exercise.Main
-com/iterator/pattern/exercise/CalculatorList.java
- com.iterator.pattern.exercise.CalculatorList
- com.iterator.pattern.exercise.CalculatorList$1
+com/iterator/pattern/exercise/SquareRootList.java
+ com.iterator.pattern.exercise.SquareRootList
+ com.iterator.pattern.exercise.SquareRootList$1
 com/iterator/pattern/exercise/Main.java
  com.iterator.pattern.exercise.Main
