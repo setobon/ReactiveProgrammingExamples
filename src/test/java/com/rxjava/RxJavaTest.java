@@ -89,8 +89,6 @@ public class RxJavaTest{
         assertTrue(result.equals("aababc"));
     }
 
-
-
     @Test
     public void groupByOperatorTest(){
         Integer[] numbers = {1,2,3,4,5,6,7,8,9,10};
@@ -139,9 +137,6 @@ public class RxJavaTest{
         System.out.println(carBrand[0]);
         System.out.println(carReference[0]);
     }
-
-
-
 
     @Test
     public void filterOperatorTest(){
@@ -217,7 +212,6 @@ public class RxJavaTest{
 
         assertEquals("Volkswagen Jetta - Renault Duster - Subaru XV - Toyota TXL - Toyota corolla - Toyota RAV4 - ", result);
     }
-
 
     private List<String> getCars() {
         List<String> carList = new ArrayList<>();
