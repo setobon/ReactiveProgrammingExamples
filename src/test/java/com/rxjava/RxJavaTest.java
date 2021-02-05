@@ -3,12 +3,17 @@ package com.rxjava;
 import io.reactivex.Observable;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Stream;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class RxJavaTest{
 
     String result ="";
+    int resultSum = 0;
 
     @Test
     public void createSimpleObservable(){
@@ -48,4 +53,182 @@ public class RxJavaTest{
 
         assertEquals(result, " Sergio Andres Tobon Bedoya 26 Masculino _Completed");
     }
+
+    @Test
+    public void mapOperatorTest(){
+        String[] letters = {"a","b","c","d","e","f","g","h","i","j","k",};
+
+        Observable.fromArray(letters)
+                .map(String::toUpperCase)
+                .subscribe(
+                        letter -> result+=letter,
+                        Throwable::printStackTrace,
+                        ()->result+="_Completed");
+        assertTrue(result.equals("ABCDEFGHIJK_Completed"));
+    }
+
+
+    @Test
+    public void mapOperatorV2Test(){
+        Observable.fromIterable(getCars())
+                .map(carBrand -> carBrand.split(" ")[0].toUpperCase())
+                .subscribe(car -> result+=car + " - ");
+
+        assertTrue(result.equals("VOLKSWAGEN - RENAULT - SUBARU - TOYOTA - TOYOTA - TOYOTA - "));
+    }
+
+
+    @Test
+    public void scanOperatorTest(){
+        String[] letters = {"a","b","c"};
+
+        Observable.fromArray(letters)
+                .scan(new StringBuilder(), StringBuilder::append)
+                .subscribe(total -> result+=total.toString());
+
+        assertTrue(result.equals("aababc"));
+    }
+
+
+
+    @Test
+    public void groupByOperatorTest(){
+        Integer[] numbers = {1,2,3,4,5,6,7,8,9,10};
+        String[] odd = {""};
+        String[] even = {""};
+
+        Observable.fromArray(numbers)
+                .groupBy(i -> i%2==0?"even":"odd")
+                .subscribe(group ->
+                        group.subscribe(number -> {
+                            if(group.getKey().toString().equals("even")){
+                                even[0]+=number;
+                            }else{
+                                odd[0]+=number;
+                            }
+                        }));
+
+        assertTrue(even[0].equals("246810"));
+        assertTrue(odd[0].equals("13579"));
+    }
+
+    @Test
+    public void groupByOperatorV2Test(){
+        String[] carBrand = {""};
+        String[] carReference = {""};
+
+        Observable.fromIterable(getCars())
+                .groupBy(car ->{
+                    if(!(car.split(" ")[0]).isEmpty()) {
+                        return "brand";
+                    }
+                    if(!(car.split(" ")[1]).isEmpty()){
+                        return "reference";
+                    }
+                    return null;
+                })
+                .subscribe(group ->
+                        group.subscribe(car -> {
+                            if(group.getKey().equals("brand")){
+                                carBrand[0]+=car.split(" ")[0] + " ";
+                            }else{
+                                carReference[0]+=car.split(" ")[1];
+                            }
+                        }));
+
+        System.out.println(carBrand[0]);
+        System.out.println(carReference[0]);
+    }
+
+
+
+
+    @Test
+    public void filterOperatorTest(){
+        Integer[] numbers = {0,1,2,3,4,5,6,7,8,9,10};
+
+
+        Observable.fromArray(numbers)
+                .filter(number -> number%2==1)
+                .subscribe(number -> result+=number);
+
+        assertTrue(result.equals("13579"));
+    }
+
+    @Test
+    public void filterOperatorV2Test() {
+        Integer[] numbers = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+
+        Observable.fromIterable(getCars())
+                .filter(car -> car.split(" ")[0].equals("Toyota"))
+                .subscribe(car -> result += car + " - ");
+
+        assertTrue(result.equals("Toyota TXL - Toyota corolla - Toyota RAV4 - "));
+    }
+
+    @Test
+    public void defaultIfEmptyWithObservableEmptyTest(){
+
+        Observable.empty()
+                .defaultIfEmpty("Error: this is empty observable")
+                .subscribe(i -> result+=i);
+
+        assertTrue(result.equals("Error: this is empty observable"));
+    }
+
+    @Test
+    public void defaultIfEmptyWithDataTest(){
+        String[] letters = {"a","b","c","d","e","f","g","h","i","j","k"};
+        Observable.fromArray(letters)
+                .defaultIfEmpty("Error: this is empty observable")
+                .firstElement()
+                .subscribe(i -> result+=i);
+
+        assertTrue(result.equals("a"));
+    }
+
+    @Test
+    public void defaultIfEmptyWithDataV2Test(){
+
+        Observable.fromIterable(getCars())
+                .defaultIfEmpty("Error: this is empty observable")
+                .firstElement()
+                .subscribe(i -> result+=i);
+
+        assertTrue(result.equals("Volkswagen Jetta"));
+    }
+
+    @Test
+    public void takeWhileTest(){
+        Integer[] numbers = {0,1,2,3,4,5,6,7,8,9,10};
+
+        Observable.fromArray(numbers)
+                .takeWhile(number -> number<5)
+                .subscribe(i -> resultSum += i);
+
+        assertEquals(10, resultSum);
+    }
+
+    @Test
+    public void takeWhileV2Test(){
+        Observable.fromIterable(getCars())
+                .takeWhile(car -> !car.split(" ")[0].isEmpty())
+                .subscribe(car -> result += car  + " - ");
+
+        assertEquals("Volkswagen Jetta - Renault Duster - Subaru XV - Toyota TXL - Toyota corolla - Toyota RAV4 - ", result);
+    }
+
+
+    private List<String> getCars() {
+        List<String> carList = new ArrayList<>();
+
+        carList.add("Volkswagen Jetta");
+        carList.add("Renault Duster");
+        carList.add("Subaru XV");
+        carList.add("Toyota TXL");
+        carList.add("Toyota corolla");
+        carList.add("Toyota RAV4");
+        return carList;
+    }
+
 }
