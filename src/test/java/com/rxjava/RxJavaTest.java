@@ -1,10 +1,12 @@
 package com.rxjava;
 
 import io.reactivex.Observable;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.observables.ConnectableObservable;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Stream;
@@ -275,14 +277,126 @@ public class RxJavaTest{
         Thread.sleep(10000);
     }
 
+    private static int start = 1;
+    private static int count = 5;
 
+    @Test
+    public void deferTest(){
 
+        Observable<Integer> observable = Observable.defer(()->Observable.range(start, count));
+        observable.subscribe(i -> System.out.println("Observer one: " + i));
+        count = 10;
+        observable.subscribe(i -> System.out.println("Observer two: " + i));
+        count = 20;
+        observable.subscribe(i -> System.out.println("Observer three: " + i));
+    }
 
+    @Test
+    public void deferV2Test(){
 
+        Observable<Integer> observable = Observable.defer(()->Observable.range(start, count));
+        System.out.println("Se debe contar la cantidad de páginas que tiene cada documento");
 
+        observable.subscribe(i -> System.out.println("document one: " + i));
+        count = 10;
+        observable.subscribe(i -> System.out.println("document two: " + i));
+        count = 20;
+        observable.subscribe(i -> System.out.println("document three: " + i));
+    }
 
+    @Test
+    public void disposableTest(){
+        Observable<Long> observable = Observable.interval(1, TimeUnit.SECONDS);
+        Disposable disposable = observable.subscribe(i -> System.out.println("Received " + i));
+        sleep(5000);
+        //disposable.dispose();
+        sleep(5000);
+    }
 
+    @Test
+    public void disposableV2Test(){
+        System.out.println("Solo se acepta la compra de 10 articulos por persona -- counting:");
 
+        Observable<Long> observable = Observable.interval(1, TimeUnit.SECONDS);
+
+        Disposable disposable = observable.subscribe(i -> System.out.println("article " + (i+1)));
+
+        sleep(10000);
+
+        disposable.dispose();
+        System.out.println("Ha excedido el limite de articulos.");
+
+        sleep(5000);
+        System.out.println("counting has finished");
+    }
+
+    @Test
+    public void distinctTest(){
+        Observable<String> observable = Observable.just("alpha","beta","gama","delta","epsilon");
+        observable
+                //.map(String::length)
+                .distinct(String::length)
+                .subscribe(i -> System.out.println("received " + i));
+    }
+
+    @Test
+    public void distinctV2Test(){
+        Observable<String> observable = Observable.fromIterable(getCars());
+        observable
+                //.map(String::length)
+                .distinct(car -> car.split(" ")[0])
+                .subscribe(car -> System.out.println("Brand: " + car.split(" ")[0]));
+    }
+
+    @Test
+    public void sortTest(){
+        Observable.fromIterable(getCars())
+                .sorted()
+                .subscribe(System.out::println);
+    }
+
+    @Test
+    public void sortStringTest(){
+        Observable.just("alpha","beta","gama","delta","epsilon")
+                .sorted()
+                .subscribe(System.out::println);
+    }
+
+    @Test
+    public void sortV2Test(){
+        Observable.just(1, 24,65,12,34,21,768)
+                .sorted(Comparator.reverseOrder())
+                .subscribe(System.out::println);
+    }
+
+    @Test
+    public void sortByLengthTest(){
+        Observable.just("alpha","beta","gama","delta","epsilon")
+                .sorted((x, y) -> Integer.compare(x.length(), y.length()))
+                .subscribe(System.out::println);
+    }
+
+    @Test
+    public void sortByLengthV2Test(){
+        Observable.fromIterable(getCars())
+                .sorted((x, y) -> Integer.compare(x.length(), y.length()))
+                .subscribe(System.out::println);
+    }
+
+    @Test
+    public void contains(){
+        Observable
+                .range(0, 10000)
+                .contains(9563).subscribe(i -> System.out.println("Received " + i));
+    }
+
+    @Test
+    public void containsV2(){
+        Observable
+                .fromIterable(getCars())
+                .contains("Toyota TXL")
+                .subscribe(i -> System.out.println("Received " + i));
+    }
 
 
     private List<String> getCars() {
@@ -295,6 +409,14 @@ public class RxJavaTest{
         carList.add("Toyota corolla");
         carList.add("Toyota RAV4");
         return carList;
+    }
+
+    private static void sleep(int millis){
+        try {
+            Thread.sleep(millis);
+        }catch (InterruptedException exception){
+            exception.printStackTrace();
+        }
     }
 
 }

@@ -1,27 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.rxjava.RxJavaTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-02-05T19:38:33" hostname="PSLT5983" time="10.07">
+<testsuite name="com.rxjava.RxJavaTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-02-05T21:42:37" hostname="PSLT5983" time="0.066">
   <properties/>
-  <testcase name="intervalExerciseTest()" classname="com.rxjava.RxJavaTest" time="10.07"/>
-  <system-out><![CDATA[This is the player one and the the time of the game is 0
-This is the player two and the the time of the game is 0
-This is the player one and the the time of the game is 1
-This is the player two and the the time of the game is 1
-This is the player one and the the time of the game is 2
-This is the player two and the the time of the game is 2
-This is the player one and the the time of the game is 3
-This is the player two and the the time of the game is 3
-This is the player one and the the time of the game is 4
-This is the player two and the the time of the game is 4
-This is the player one and the the time of the game is 5
-This is the player two and the the time of the game is 5
-This is the player one and the the time of the game is 6
-This is the player two and the the time of the game is 6
-This is the player one and the the time of the game is 7
-This is the player two and the the time of the game is 7
-This is the player one and the the time of the game is 8
-This is the player two and the the time of the game is 8
-This is the player one and the the time of the game is 9
-This is the player two and the the time of the game is 9
+  <testcase name="containsV2()" classname="com.rxjava.RxJavaTest" time="0.066"/>
+  <system-out><![CDATA[Received true
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
