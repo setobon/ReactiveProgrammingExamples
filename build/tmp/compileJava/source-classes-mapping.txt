@@ -1,3 +1,5 @@
+StreamExamples.java
+ StreamExamples
 SquareCallableExample.java
  SquareCallableExample
 Employee.java
@@ -6,30 +8,39 @@ SquareFutureExample.java
  SquareFutureExample
 com/observer/pattern/LengthObserver.java
  com.observer.pattern.LengthObserver
-StreamExamples.java
- StreamExamples
+com/reactive/streams/Main.java
+ com.reactive.streams.Main
 com/observer/pattern/weather/MainWeather.java
  com.observer.pattern.weather.MainWeather
+com/reactive/streams/exercise/Sleeper.java
+ com.reactive.streams.exercise.Sleeper
 com/observer/pattern/exercise/Account.java
  com.observer.pattern.exercise.Account
 com/reactive/streams/Sleeper.java
  com.reactive.streams.Sleeper
+com/reactive/streams/exercise/PrintSubscriber.java
+ com.reactive.streams.exercise.PrintSubscriber
 com/observer/pattern/weather/WeatherObservable.java
  com.observer.pattern.weather.WeatherObservable
 com/observer/pattern/exercise/MainObserver.java
  com.observer.pattern.exercise.MainObserver
 Travels.java
  Travels
+com/reactive/streams/exercise/MessagesProcessor.java
+ com.reactive.streams.exercise.MessagesProcessor
 com/observer/pattern/weather/WeatherObserver.java
  com.observer.pattern.weather.WeatherObserver
-com/observer/pattern/WordsObserver.java
- com.observer.pattern.WordsObserver
+com/reactive/streams/PrintSubscriber.java
+ com.reactive.streams.PrintSubscriber
 com/observer/pattern/CasesObserver.java
  com.observer.pattern.CasesObserver
 MainCompletableFutureExample.java
  MainCompletableFutureExample
-com/observer/pattern/Subject.java
- com.observer.pattern.Subject
+com/reactive/streams/PowProcessor.java
+ com.reactive.streams.PowProcessor
+com/iterator/pattern/MultiplyList.java
+ com.iterator.pattern.MultiplyList
+ com.iterator.pattern.MultiplyList$1
 PersonShop.java
  PersonShop
 MainAutomaticCashier.java
@@ -42,6 +53,8 @@ MainTravels.java
  MainTravels
 com/observer/pattern/exercise/TransferObservable.java
  com.observer.pattern.exercise.TransferObservable
+com/iterator/pattern/Main.java
+ com.iterator.pattern.Main
 Product.java
  Product
 com/observer/pattern/MainObserver.java
@@ -58,17 +71,14 @@ com/observer/pattern/exercise/TransferObserver.java
  com.observer.pattern.exercise.TransferObserver
 MainStream.java
  MainStream
-com/reactive/streams/PowProcessor.java
- com.reactive.streams.PowProcessor
-com/reactive/streams/PrintSubscriber.java
- com.reactive.streams.PrintSubscriber
-com/reactive/streams/exercise/Sleeper.java
- com.reactive.streams.exercise.Sleeper
-com/reactive/streams/Main.java
- com.reactive.streams.Main
-com/reactive/streams/exercise/PrintSubscriber.java
- com.reactive.streams.exercise.PrintSubscriber
-com/reactive/streams/exercise/PowProcessor.java
- com.reactive.streams.exercise.PowProcessor
+com/observer/pattern/WordsObserver.java
+ com.observer.pattern.WordsObserver
+com/observer/pattern/Subject.java
+ com.observer.pattern.Subject
 com/reactive/streams/exercise/Main.java
  com.reactive.streams.exercise.Main
+com/iterator/pattern/exercise/CalculatorList.java
+ com.iterator.pattern.exercise.CalculatorList
+ com.iterator.pattern.exercise.CalculatorList$1
+com/iterator/pattern/exercise/Main.java
+ com.iterator.pattern.exercise.Main

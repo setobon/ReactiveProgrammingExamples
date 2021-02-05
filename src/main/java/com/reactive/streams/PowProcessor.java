@@ -29,7 +29,7 @@ public class PowProcessor extends SubmissionPublisher<Integer> implements Flow.P
 
     @Override
     public void onComplete() {
-        System.out.println("PowProcessor complete");
+        System.out.println("MessagesProcessor complete");
         /**
          * close() -> metodo que finaliza la tarea
          */

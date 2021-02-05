@@ -5,7 +5,7 @@ import java.util.Locale;
 import java.util.concurrent.Flow;
 import java.util.concurrent.SubmissionPublisher;
 
-public class PowProcessor  extends SubmissionPublisher<String> implements Flow.Processor<String, String> {
+public class MessagesProcessor extends SubmissionPublisher<String> implements Flow.Processor<String, String> {
 
     private Flow.Subscription subscription;
 
@@ -36,7 +36,7 @@ public class PowProcessor  extends SubmissionPublisher<String> implements Flow.P
 
     @Override
     public void onComplete() {
-        System.out.println("PowProcessor complete");
+        System.out.println("MessagesProcessor complete");
         close();
     }
 }

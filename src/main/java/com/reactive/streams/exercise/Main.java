@@ -9,11 +9,11 @@ import java.util.concurrent.SubmissionPublisher;
 public class Main{
     public static void main(String[] args) {
         SubmissionPublisher<String> submissionPublisher = new SubmissionPublisher<>();
-        Flow.Processor<String, String> powProcessor = new PowProcessor();
+        Flow.Processor<String, String> messageProcessor = new MessagesProcessor();
         Flow.Subscriber<String> printSubscriber = new PrintSubscriber();
 
-        submissionPublisher.subscribe(powProcessor);
-        powProcessor.subscribe(printSubscriber);
+        submissionPublisher.subscribe(messageProcessor);
+        messageProcessor.subscribe(printSubscriber);
 
         List<String> messages = List.of("Este es el primer mensaje de prueba", "Llegamos al segundo", "El tercero finaliza la lista");
 
