@@ -1,14 +1,15 @@
 package com.rxjava;
 
 import io.reactivex.Observable;
+import io.reactivex.observables.ConnectableObservable;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class RxJavaTest{
 
@@ -212,6 +213,62 @@ public class RxJavaTest{
 
         assertEquals("Volkswagen Jetta - Renault Duster - Subaru XV - Toyota TXL - Toyota corolla - Toyota RAV4 - ", result);
     }
+
+    @Test
+    public void showObservableCold(){
+        Observable<String> observable = Observable.just("a", "b", "c", "d");
+
+        observable.subscribe((observerOne)-> System.out.println("observer one: " + observerOne));
+        observable.subscribe((observerTwo)-> System.out.println("observer two: " + observerTwo));
+    }
+
+
+    public void showObservableHot() {
+        ConnectableObservable<String> observable = Observable.just("a", "b", "c", "d").publish();
+
+        observable.subscribe((observerOne) -> System.out.println("observer one: " + observerOne));
+        observable.subscribe((observerTwo) -> System.out.println("observer two: " + observerTwo));
+
+       observable.connect();
+
+    }
+
+    @Test
+    public void showObservableHotTest() throws InterruptedException {
+        String[] result = {""};
+        ConnectableObservable<Long> connectable =
+                Observable.interval(200, TimeUnit.MILLISECONDS).publish();
+        connectable.subscribe(i -> result[0] += i);
+
+        assertFalse(result[0].equals("01"));
+
+        connectable.connect();
+        Thread.sleep(500);
+
+        assertTrue(result[0].equals("01"));
+    }
+
+    @Test
+    public void intervalTest() throws InterruptedException {
+       ConnectableObservable<Long> observable =
+               Observable.interval(1, TimeUnit.SECONDS).publish();
+
+       observable.subscribe(i -> System.out.println("Second observable one " + i));
+        observable.connect();
+        Thread.sleep(5000);
+       observable.subscribe(i -> System.out.println("Second observable two " + i));
+       Thread.sleep(5000);
+    }
+
+
+
+
+
+
+
+
+
+
 
     private List<String> getCars() {
         List<String> carList = new ArrayList<>();

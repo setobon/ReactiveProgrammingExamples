@@ -1,8 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.rxjava.RxJavaTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-02-05T16:56:59" hostname="PSLT5983" time="0.083">
+<testsuite name="com.rxjava.RxJavaTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-02-05T19:22:28" hostname="PSLT5983" time="10.127">
   <properties/>
-  <testcase name="takeWhileV2Test()" classname="com.rxjava.RxJavaTest" time="0.083"/>
-  <system-out><![CDATA[Volkswagen Jetta - Renault Duster - Subaru XV - Toyota TXL - Toyota corolla - Toyota RAV4 - 
+  <testcase name="intervalTest()" classname="com.rxjava.RxJavaTest" time="10.127"/>
+  <system-out><![CDATA[Second observable one 0
+Second observable one 1
+Second observable one 2
+Second observable one 3
+Second observable one 4
+Second observable two 4
+Second observable one 5
+Second observable two 5
+Second observable one 6
+Second observable two 6
+Second observable one 7
+Second observable two 7
+Second observable one 8
+Second observable two 8
+Second observable one 9
+Second observable two 9
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
